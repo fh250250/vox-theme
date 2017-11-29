@@ -1,0 +1,43 @@
+description = "默认布局"
+==
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+        <title>{{ this.page.title }} | {{ this.theme.site_name }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="keywords" content="">
+
+        <link rel="icon" type="image/png" href="{{ 'assets/images/favicon.ico'|theme }}">
+
+        <link href="{{ [
+            'assets/vendor/bootstrap.css',
+            '@framework.extras',
+            'assets/css/app.scss'
+        ]|theme }}" rel="stylesheet">
+
+        {% styles %}
+    </head>
+    <body>
+        {% partial 'common/header' %}
+
+        <main class="px-2">
+            {% page %}
+        </main>
+
+        <script src="{{ [
+            'assets/vendor/jquery-3.2.1.js',
+            'assets/vendor/bootstrap.bundle.js',
+            '@framework',
+            '@framework.extras',
+            'assets/js/app.js'
+        ]|theme }}"></script>
+
+        {% scripts %}
+    </body>
+</html>

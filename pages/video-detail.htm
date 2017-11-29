@@ -1,0 +1,18 @@
+title = "视频详情"
+url = "/video/:vod_id"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Vox\Video\Models\Vod;
+
+function onStart() {
+  $vod = Vod::find($this->param('vod_id'));
+
+  $this->page->title = $vod->title;
+  $this['vod'] = $vod;
+}
+?>
+==
+<h1>{{ vod.title }}</h1>
+<p>{{ dump(vod.downloads) }}</p>

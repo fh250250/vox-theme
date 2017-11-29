@@ -1,0 +1,22 @@
+==
+<?php
+use Vox\Video\Models\Category;
+
+function onStart() {
+  $this['categories'] = Category::all();
+}
+?>
+==
+<header>
+  <nav class="d-flex bg-light">
+    <a class="py-1 px-2 {% if this.page.id == 'home' %}bg-dark text-white{% else %}text-dark{% endif %}" href="{{ 'home'|page }}">首页</a>
+    {% for category in categories %}
+      <a class="py-1 px-2 {% if this.page.id == 'video-list' and this.param.category_id == category.id %}bg-dark text-white{% else %}text-dark{% endif %}" href="{{ 'video-list'|page({ category_id: category.id }) }}">
+        {{ category.title }}
+      </a>
+    {% endfor %}
+  </nav>
+  <form class="p-2" action="">
+    <input class="form-control form-control-sm rounded-0" type="search" placeholder="搜索...">
+  </form>
+</header>

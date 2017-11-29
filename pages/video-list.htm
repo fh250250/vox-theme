@@ -1,0 +1,29 @@
+title = "视频列表"
+url = "/videos/:category_id"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Vox\Video\Models\Category;
+
+function onStart() {
+  $category = Category::find($this->param('category_id'));
+  $vods = $category->vods()
+                  ->with('poster')
+                  ->orderBy('updated_at', 'desc')
+                  ->get();
+
+  $this->page->title = $category->title;
+  $this['vods'] = $vods;
+}
+?>
+==
+<div class="row no-gutters">
+  {% for vod in vods %}
+    <div class="col-6">
+      <a href="{{ 'video-detail'|page({ vod_id: vod.id }) }}">
+        {{ vod.title }}
+      </a>
+    </div>
+  {% endfor %}
+</div>
