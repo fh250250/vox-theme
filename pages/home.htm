@@ -3,4 +3,35 @@ url = "/"
 layout = "default"
 is_hidden = 0
 ==
-<p>Home Page</p>
+<?php
+use Vox\Video\Models\Category;
+
+function onStart() {
+  trace_sql();
+  $vodsGroup = Category::all()->map(function ($category) {
+    return [
+      'title' => $category->title,
+      'category_id' => $category->id,
+      'vods' => $category->vods()
+                         ->with('poster')
+                         ->orderBy('view_count', 'desc')
+                         ->limit(6)
+                         ->get()
+    ];
+  })->toArray();
+
+  $this['vods_group'] = $vodsGroup;
+}
+?>
+==
+{% for group in vods_group %}
+  <div class="mb-2">
+    <div class="d-flex justify-content-between align-items-center mb-1">
+      <span class="text-info">热门{{ group.title }}</span>
+      <a class="text-muted" href="{{ 'video-list'|page({ category_id: group.category_id }) }}"><small>更多</small></a>
+    </div>
+    <div class="row video-list">
+      {% partial 'vods' vods=group.vods %}
+    </div>
+  </div>
+{% endfor %}

@@ -9,9 +9,9 @@ function onStart() {
 ==
 <header>
   <nav class="d-flex bg-light">
-    <a class="py-1 px-2 {% if this.page.id == 'home' %}bg-dark text-white{% else %}text-dark{% endif %}" href="{{ 'home'|page }}">首页</a>
+    <a class="py-1 px-2 {% if this.page.id == 'home' %}bg-info text-white{% else %}text-dark{% endif %}" href="{{ 'home'|page }}">首页</a>
     {% for category in categories %}
-      <a class="py-1 px-2 {% if this.page.id == 'video-list' and this.param.category_id == category.id %}bg-dark text-white{% else %}text-dark{% endif %}" href="{{ 'video-list'|page({ category_id: category.id }) }}">
+      <a class="py-1 px-2 {% if this.page.id == 'video-list' and this.param.category_id == category.id %}bg-info text-white{% else %}text-dark{% endif %}" href="{{ 'video-list'|page({ category_id: category.id }) }}">
         {{ category.title }}
       </a>
     {% endfor %}
