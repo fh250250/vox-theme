@@ -7,7 +7,6 @@ is_hidden = 0
 use Vox\Video\Models\Category;
 
 function onStart() {
-  trace_sql();
   $vodsGroup = Category::all()->map(function ($category) {
     return [
       'title' => $category->title,
