@@ -5,25 +5,40 @@ is_hidden = 0
 ==
 <?php
 use Vox\Video\Models\Category;
+use Vox\Video\Models\Vod;
 
 function onStart() {
   $category = Category::find($this->param('category_id'));
-  $vods = $category->vods()
-                  ->with('poster')
-                  ->orderBy('updated_at', 'desc')
-                  ->get();
+  if (!$category) { return redirect('/404'); }
+
+  $vods = Vod::findByCategoryID($category->id);
 
   $this->page->title = $category->title;
   $this['vods'] = $vods;
 }
+
+function onLoadMore() {
+  $vods = Vod::findByCategoryID($this->param('category_id'));
+
+  return [
+    '@#vods' => $this->renderPartial('vods', [ 'vods' => $vods ]),
+    'count' => $vods->count()
+  ];
+}
 ?>
 ==
-<div class="row no-gutters">
-  {% for vod in vods %}
-    <div class="col-6">
-      <a href="{{ 'video-detail'|page({ vod_id: vod.id }) }}">
-        {{ vod.title }}
-      </a>
-    </div>
-  {% endfor %}
-</div>
+{% if vods.count %}
+  <div id="vods" class="row video-list">
+    {% partial 'vods' vods=vods %}
+  </div>
+  <div class="spinner mx-auto" style="display: none">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+  <div id="loadmore-end" style="display: none" class="text-muted text-center py-3">没有更多了</div>
+{% else %}
+  <div class="text-muted text-center">没有资源</div>
+{% endif %}

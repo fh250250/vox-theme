@@ -8,6 +8,9 @@ use Vox\Video\Models\Vod;
 
 function onStart() {
   $vod = Vod::find($this->param('vod_id'));
+  if (!$vod) { return redirect('/404'); }
+
+  $vod->incrementViewCount();
 
   $this->page->title = $vod->title;
   $this['vod'] = $vod;
