@@ -1,0 +1,30 @@
+title = "搜索"
+url = "/search"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Vox\Video\Models\Vod;
+
+function onStart() {
+  $keyword = trim(post('keyword'));
+  if (!$keyword) { return redirect('/404'); }
+
+  $vods = Vod::where('title', 'like', '%' . $keyword . '%')
+              ->with('poster')
+              ->orderBy('view_count', 'desc')
+              ->get();
+
+  $this->page->title = '搜索 ' . $keyword;
+  $this['keyword'] = $keyword;
+  $this['vods'] = $vods;
+}
+?>
+==
+{% if vods.count %}
+  <div class="row video-list">
+    {% partial 'vods' vods=vods %}
+  </div>
+{% else %}
+  <div class="text-muted text-center">未搜索到资源</div>
+{% endif %}

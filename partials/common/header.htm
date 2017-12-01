@@ -16,7 +16,7 @@ function onStart() {
       </a>
     {% endfor %}
   </nav>
-  <form class="p-2" action="">
-    <input class="form-control form-control-sm rounded-0" type="search" placeholder="搜索...">
+  <form class="p-2" action="{{ 'search'|page }}" method="POST">
+    <input class="form-control form-control-sm rounded-0" name="keyword" value="{{ keyword }}" type="search" placeholder="搜索...">
   </form>
 </header>
