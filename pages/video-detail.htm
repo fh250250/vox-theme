@@ -14,8 +14,34 @@ function onStart() {
 
   $this->page->title = $vod->title;
   $this['vod'] = $vod;
+  $this['baidu_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'baidu'; });
+  $this['online_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'online'; });
 }
 ?>
 ==
-<h1>{{ vod.title }}</h1>
-<p>{{ dump(vod.downloads) }}</p>
+<h3>{{ vod.title }}</h3>
+<img class="d-block img-fluid mb-3" src="{{ vod.poster.getThumb(400, 300, { mode: 'crop' }) }}" alt="{{ vod.title }}">
+
+<div class="list-group downloads">
+  {% for info in baidu_info %}
+    <div class="list-group-item rounded-0 d-flex align-items-center">
+      <a class="mr-auto text-info" href="{{ info.url }}">百度网盘</a>
+      <span class="mr-2">密码: <span class="text-danger">{{ info.code }}</span></span>
+      <span class="btn btn-success btn-sm" data-url="{{ info.url }}" data-clipboard-text="{{ info.code }}">一键复制</span>
+    </div>
+  {% endfor %}
+
+  {% for info in online_info %}
+    <div class="list-group-item rounded-0">
+      <a class="text-info" href="{{ info.url }}">在线观看</a>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="modal fade" id="jump-modal">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-0">
+      <div class="modal-body bg-success text-white"></div>
+    </div>
+  </div>
+</div>

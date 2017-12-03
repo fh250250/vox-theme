@@ -42,3 +42,23 @@ runInPage('video-list', function () {
 
   $window.bind('scroll', loadMore);
 });
+
+runInPage('video-detail', function () {
+  var clipboard = new Clipboard('[data-clipboard-text]');
+
+  var jump = function (url, msg) {
+    $('#jump-modal').modal({ backdrop: 'static' });
+    $('#jump-modal .modal-body').text(msg);
+    setTimeout(function () {
+      window.location.href = url;
+    }, 2000);
+  };
+
+  clipboard.on('success', function (e) {
+    jump($(e.trigger).data('url'), '复制成功, 即将跳转网盘...');
+  });
+
+  clipboard.on('error', function (e) {
+    jump($(e.trigger).data('url'), '复制失败, 硬件不支持, 即将跳转网盘...');
+  });
+});
