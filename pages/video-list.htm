@@ -21,7 +21,7 @@ function onLoadMore() {
   $vods = Vod::findByCategoryID($this->param('category_id'));
 
   return [
-    '@#vods' => $this->renderPartial('vods', [ 'vods' => $vods ]),
+    'vods' => $this->renderPartial('vods', [ 'vods' => $vods ]),
     'count' => $vods->count()
   ];
 }

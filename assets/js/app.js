@@ -26,7 +26,13 @@ runInPage('video-list', function () {
         loading: loader,
         success: function (data) {
           if (data.count) {
-            this.success(data);
+            var $vods = $(data.vods);
+            $vods.find('img[data-original]').lazyload({
+              threshold : 100,
+              effect : 'fadeIn'
+            });
+
+            $('#vods').append($vods);
             page++;
           } else {
             $window.unbind('scroll', loadMore);
@@ -60,5 +66,12 @@ runInPage('video-detail', function () {
 
   clipboard.on('error', function (e) {
     jump($(e.trigger).data('url'), '复制失败, 硬件不支持, 即将跳转网盘...');
+  });
+});
+
+$(function () {
+  $('img[data-original]').lazyload({
+    threshold : 100,
+    effect : 'fadeIn'
   });
 });

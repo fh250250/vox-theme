@@ -1,7 +1,7 @@
 {% for vod in vods %}
   <div class="col-4 px-1 mb-2">
     <a class="d-block" href="{{ 'video-detail'|page({ vod_id: vod.id }) }}">
-      <img class="d-block img-fluid" src="{{ vod.poster.getThumb(400, 500, { mode: 'crop' }) }}" alt="{{ vod.title }}">
+      <img class="d-block img-fluid" data-original="{{ vod.poster.getThumb(400, 500, { mode: 'crop' }) }}" width="400" height="500" alt="{{ vod.title }}">
       <small class="d-block p-1 text-dark">{{ vod.title }}</small>
     </a>
   </div>
