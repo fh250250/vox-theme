@@ -50,10 +50,10 @@ runInPage('video-list', function () {
 });
 
 runInPage('video-detail', function () {
-  var clipboard = new Clipboard('[data-clipboard-text]');
+  var clipboard = new Clipboard('[data-copy-baidu]');
 
   var jump = function (url, msg) {
-    $('#jump-modal').modal({ backdrop: 'static' });
+    $('#jump-modal').modal();
     $('#jump-modal .modal-body').text(msg);
     setTimeout(function () {
       window.location.href = url;
@@ -66,6 +66,18 @@ runInPage('video-detail', function () {
 
   clipboard.on('error', function (e) {
     jump($(e.trigger).data('url'), '复制失败, 硬件不支持, 即将跳转网盘...');
+  });
+});
+
+runInPage('video-detail', function () {
+  var clipboard = new Clipboard('[data-copy-magnet]');
+
+  clipboard.on('success', function (e) {
+    $(e.trigger).text('复制成功');
+  });
+
+  clipboard.on('error', function (e) {
+    $(e.trigger).text('复制失败');
   });
 });
 

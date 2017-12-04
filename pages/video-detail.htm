@@ -16,24 +16,32 @@ function onStart() {
   $this['vod'] = $vod;
   $this['baidu_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'baidu'; });
   $this['online_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'online'; });
+  $this['magnet_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'magnet'; });
 }
 ?>
 ==
 <h3>{{ vod.title }}</h3>
-<img class="d-block img-fluid mb-3" src="{{ vod.poster.getThumb(400, 300, { mode: 'crop' }) }}" alt="{{ vod.title }}">
+<img class="d-block img-fluid mb-3" data-original="{{ vod.poster.getPath() }}" width="400" height="300">
 
-<div class="list-group downloads">
+<div class="list-group downloads pb-3">
   {% for info in baidu_info %}
     <div class="list-group-item rounded-0 d-flex align-items-center">
       <a class="mr-auto text-info" href="{{ info.url }}">百度网盘</a>
       <span class="mr-2">密码: <span class="text-danger">{{ info.code }}</span></span>
-      <span class="btn btn-success btn-sm" data-url="{{ info.url }}" data-clipboard-text="{{ info.code }}">一键复制</span>
+      <span class="btn btn-success btn-sm" data-copy-baidu data-url="{{ info.url }}" data-clipboard-text="{{ info.code }}">一键复制</span>
     </div>
   {% endfor %}
 
   {% for info in online_info %}
     <div class="list-group-item rounded-0">
       <a class="text-info" href="{{ info.url }}">在线观看</a>
+    </div>
+  {% endfor %}
+
+  {% for info in magnet_info %}
+    <div class="list-group-item rounded-0 d-flex align-items-center">
+      <a class="mr-auto text-info" href="{{ info.url }}">磁力链接</a>
+      <span class="btn btn-success btn-sm" data-copy-magnet data-clipboard-text="{{ info.url }}">一键复制</span>
     </div>
   {% endfor %}
 </div>
