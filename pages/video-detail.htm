@@ -28,7 +28,7 @@ function onStart() {
     <div class="list-group-item rounded-0 d-flex align-items-center">
       <a class="mr-auto text-info" href="{{ info.url }}">百度网盘</a>
       <span class="mr-2">密码: <span class="text-danger">{{ info.code }}</span></span>
-      <span class="btn btn-success btn-sm" data-copy-baidu data-url="{{ info.url }}" data-clipboard-text="{{ info.code }}">一键复制</span>
+      <span class="btn btn-success btn-sm" data-copy-baidu data-url="{{ info.url }}" data-clipboard-text="{{ info.code }}" onclick="">一键复制</span>
     </div>
   {% endfor %}
 
