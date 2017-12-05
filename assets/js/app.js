@@ -93,11 +93,7 @@ $(function () {
     var iscroll = new IScroll(this, {
       scrollX: true,
       scrollY: false,
-      tap: 'scroll-nav-tap'
-    });
-
-    $(this).find('a').bind('tap', function () {
-      window.location.href = $(this).attr('href');
+      click: true
     });
 
     iscroll.scrollToElement($(this).find('.active').get(0), 300, true, true);
