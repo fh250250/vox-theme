@@ -1,0 +1,25 @@
+title = "求片"
+url = "/demand"
+layout = "default"
+is_hidden = 0
+==
+<?php
+use Vox\Video\Models\Demand;
+
+function onSubmit () {
+  $title = trim(input('title'));
+
+  if (!$title) {
+    Flash::error('请输入影片名');
+    return;
+  }
+
+  Demand::addDemand($title, '网站');
+  Flash::success('我们将会在近期添加，感谢您的支持');
+}
+?>
+==
+{{ form_ajax('onSubmit', { class: 'mt-5', flash: true }) }}
+  <input class="form-control form-control-lg mb-3 rounded-0" type="text" name="title" placeholder="输入影片名...">
+  <button data-attach-loading type="submit" class="btn btn-primary btn-block rounded-0">求片</button>
+{{ form_close() }}

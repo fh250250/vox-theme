@@ -87,3 +87,14 @@ $(function () {
     effect : 'fadeIn'
   });
 });
+
+$(function () {
+  $('[data-scroll-nav]').each(function () {
+    var iscroll = new IScroll(this, {
+      scrollX: true,
+      scrollY: false
+    });
+
+    iscroll.scrollToElement($(this).find('.active').get(0), 300, true, true);
+  });
+});

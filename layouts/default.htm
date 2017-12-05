@@ -26,14 +26,13 @@ description = "默认布局"
     <body id="{{ this.page.id }}">
         {% partial 'common/header' %}
 
-        <main class="px-2">
-            {% page %}
-        </main>
+        <main class="px-2 py-3">{% page %}</main>
 
         <script src="{{ 'assets/vendor/jquery-3.2.1.min.js'|theme }}"></script>
         <script src="{{ 'assets/vendor/bootstrap.bundle.min.js'|theme }}"></script>
         <script src="{{ 'assets/vendor/clipboard.min.js'|theme }}"></script>
         <script src="{{ 'assets/vendor/jquery.lazyload.min.js'|theme }}"></script>
+        <script src="{{ 'assets/vendor/iscroll-lite.js'|theme }}"></script>
         <script src="{{ [
             '@framework',
             '@framework.extras',

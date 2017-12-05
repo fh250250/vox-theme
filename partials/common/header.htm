@@ -8,15 +8,21 @@ function onStart() {
 ?>
 ==
 <header>
-  <nav class="d-flex bg-info">
-    <a class="py-1 px-2 text-white {% if this.page.id == 'home' %}bg-warning{% endif %}" href="{{ 'home'|page }}">首页</a>
-    {% for category in categories %}
-      <a class="py-1 px-2 text-white {% if this.page.id == 'video-list' and this.param.category_id == category.id %}bg-warning{% endif %}" href="{{ 'video-list'|page({ category_id: category.id }) }}">
-        {{ category.title }}
-      </a>
-    {% endfor %}
+  <div class="d-flex justify-content-between align-items-center bg-light p-2">
+    <a class="text-info" href="{{ 'home'|page }}">{{ this.theme.site_name }}</a>
+    <form action="{{ 'search'|page }}" method="POST">
+      <input class="form-control form-control-sm rounded-0" name="keyword" value="{{ keyword }}" type="search" placeholder="搜索...">
+    </form>
+  </div>
+  <nav data-scroll-nav class="bg-info">
+    <div class="d-inline-flex">
+      <a class="py-1 px-2 text-white {{ this.page.id == 'home' ? 'bg-warning active' }}" href="{{ 'home'|page }}">首页</a>
+      {% for category in categories %}
+        <a class="py-1 px-2 text-white {{ this.page.id == 'video-list' and this.param.category_id == category.id ? 'bg-warning active' }}" href="{{ 'video-list'|page({ category_id: category.id }) }}">
+          {{ category.title }}
+        </a>
+      {% endfor %}
+      <a class="py-1 px-2 text-white {{ this.page.id == 'demand' ? 'bg-warning active' }}" href="{{ 'demand'|page }}">求片</a>
+    </div>
   </nav>
-  <form class="p-2" action="{{ 'search'|page }}" method="POST">
-    <input class="form-control form-control-sm rounded-0" name="keyword" value="{{ keyword }}" type="search" placeholder="搜索...">
-  </form>
 </header>

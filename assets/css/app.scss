@@ -1,5 +1,10 @@
 @import 'spinner';
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .video-list {
   margin: 0 -0.25rem;
   img {
@@ -15,4 +20,16 @@
 
 a, a:active, a:hover {
   text-decoration: none;
+}
+
+.second-nav {
+  font-size: 0.8rem;
+}
+
+[data-scroll-nav] {
+  position: relative;
+  overflow: hidden;
+  > div {
+    white-space: nowrap;
+  }
 }
