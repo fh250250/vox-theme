@@ -96,6 +96,7 @@ $(function () {
       click: true
     });
 
-    iscroll.scrollToElement($(this).find('.active').get(0), 300, true, true);
+    var activeElement = $(this).find('.active').get(0);
+    activeElement && iscroll.scrollToElement(activeElement, 300, true, true);
   });
 });
