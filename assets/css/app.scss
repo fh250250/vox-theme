@@ -16,6 +16,17 @@ body {
   .downloads, .downloads .btn {
     font-size: 0.8rem;
   }
+
+  .thunder-download {
+    position: relative;
+    span {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 12px;
+      padding: 2px 5px;
+    }
+  }
 }
 
 a, a:active, a:hover {

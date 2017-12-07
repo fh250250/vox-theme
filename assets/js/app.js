@@ -81,18 +81,6 @@ runInPage('video-detail', function () {
   });
 });
 
-runInPage('video-detail', function () {
-  var clipboard = new Clipboard('[data-copy-thunder]');
-
-  clipboard.on('success', function (e) {
-    $(e.trigger).text('复制成功');
-  });
-
-  clipboard.on('error', function (e) {
-    $(e.trigger).text('复制失败');
-  });
-});
-
 $(function () {
   $('img[data-original]').lazyload({
     threshold : 100,

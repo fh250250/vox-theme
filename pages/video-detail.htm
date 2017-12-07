@@ -29,28 +29,26 @@ function onStart() {
     <div class="list-group-item rounded-0 d-flex align-items-center">
       <a class="mr-auto text-info" href="{{ info.url }}">百度网盘</a>
       <span class="mr-2">密码: <span class="text-danger">{{ info.code }}</span></span>
-      <span class="btn btn-success btn-sm" data-copy-baidu data-url="{{ info.url }}" data-clipboard-text="{{ info.code }}" onclick="">一键复制</span>
+      <span class="btn btn-success btn-sm rounded-0" data-copy-baidu data-url="{{ info.url }}" data-clipboard-text="{{ info.code }}" onclick="">一键复制</span>
     </div>
   {% endfor %}
 
   {% for info in online_info %}
-    <div class="list-group-item rounded-0">
-      <a class="text-info" href="{{ info.url }}">在线观看</a>
-    </div>
+    <a class="list-group-item rounded-0 text-info" href="{{ info.url }}">在线观看</a>
   {% endfor %}
 
   {% for info in magnet_info %}
     <div class="list-group-item rounded-0 d-flex align-items-center">
       <a class="mr-auto text-info" href="{{ info.url }}">磁力链接</a>
-      <span class="btn btn-success btn-sm" data-copy-magnet data-clipboard-text="{{ info.url }}" onclick="">一键复制</span>
+      <span class="btn btn-success btn-sm rounded-0" data-copy-magnet data-clipboard-text="{{ info.url }}" onclick="">一键复制</span>
     </div>
   {% endfor %}
 
   {% for info in thunder_info %}
-    <div class="list-group-item rounded-0 d-flex align-items-center">
-      <a class="mr-auto text-info" href="{{ info.url }}">迅雷下载</a>
-      <span class="btn btn-success btn-sm" data-copy-thunder data-clipboard-text="{{ info.url }}" onclick="">一键复制</span>
-    </div>
+    <a class="list-group-item rounded-0 text-info text-truncate thunder-download" href="{{ info.url }}">
+      {{ vod.title }}
+      <span class="bg-warning text-white">迅雷下载</span>
+    </a>
   {% endfor %}
 </div>
 
