@@ -17,6 +17,7 @@ function onStart() {
   $this['baidu_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'baidu'; });
   $this['online_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'online'; });
   $this['magnet_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'magnet'; });
+  $this['thunder_info'] = array_filter($vod->downloads, function ($d) { return $d['_group'] == 'thunder'; });
 }
 ?>
 ==
@@ -42,6 +43,13 @@ function onStart() {
     <div class="list-group-item rounded-0 d-flex align-items-center">
       <a class="mr-auto text-info" href="{{ info.url }}">磁力链接</a>
       <span class="btn btn-success btn-sm" data-copy-magnet data-clipboard-text="{{ info.url }}" onclick="">一键复制</span>
+    </div>
+  {% endfor %}
+
+  {% for info in thunder_info %}
+    <div class="list-group-item rounded-0 d-flex align-items-center">
+      <a class="mr-auto text-info" href="{{ info.url }}">迅雷下载</a>
+      <span class="btn btn-success btn-sm" data-copy-thunder data-clipboard-text="{{ info.url }}" onclick="">一键复制</span>
     </div>
   {% endfor %}
 </div>
