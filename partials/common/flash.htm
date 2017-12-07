@@ -1,0 +1,6 @@
+{% flash %}
+  <div class="alert alert-{{ type == 'error' ? 'danger' : type }} alert-dismissible fade show rounded-0 border-0">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+  </div>
+{% endflash %}

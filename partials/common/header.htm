@@ -16,13 +16,13 @@ function onStart() {
   </div>
   <nav data-scroll-nav class="bg-info">
     <div class="d-inline-flex">
-      <a class="py-1 px-2 text-white {{ this.page.id == 'home' ? 'bg-warning active' }}" href="{{ 'home'|page }}">首页</a>
+      <a class="py-2 px-3 text-white {{ this.page.id == 'home' ? 'bg-warning active' }}" href="{{ 'home'|page }}">首页</a>
       {% for category in categories %}
-        <a class="py-1 px-2 text-white {{ this.page.id == 'video-list' and this.param.category_id == category.id ? 'bg-warning active' }}" href="{{ 'video-list'|page({ category_id: category.id }) }}">
+        <a class="py-2 px-3 text-white {{ this.page.id == 'video-list' and this.param.category_id == category.id ? 'bg-warning active' }}" href="{{ 'video-list'|page({ category_id: category.id }) }}">
           {{ category.title }}
         </a>
       {% endfor %}
-      <a class="py-1 px-2 text-white {{ this.page.id == 'demand' ? 'bg-warning active' }}" href="{{ 'demand'|page }}">求片</a>
+      <a class="py-2 px-3 text-white {{ this.page.id == 'demand' ? 'bg-warning active' }}" href="{{ 'demand'|page }}">求片</a>
     </div>
   </nav>
 </header>
