@@ -5,6 +5,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+[id^="cnzz"] { display: none; }
+
 .video-list {
   margin: 0 -0.25rem;
   img {
