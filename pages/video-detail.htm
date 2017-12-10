@@ -24,6 +24,9 @@ function onStart() {
 <h3>{{ vod.title }}</h3>
 <img class="d-block img-fluid mb-3" data-original="{{ vod.poster.getPath() }}" width="400" height="300">
 
+<a href="http://baobeisou.cn">
+  <img src="{{ 'assets/images/timg.gif'|theme }}" class="d-block img-fluid mb-3">
+</a>
 <div class="list-group downloads">
   {% for info in baidu_info %}
     <div class="list-group-item rounded-0 d-flex align-items-center">

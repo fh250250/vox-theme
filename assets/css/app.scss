@@ -14,6 +14,17 @@ body {
   }
 }
 
+#home {
+  .nav-link {
+    font-size: 0.8rem;
+    color: #20c997;
+    &.active {
+      background: #20c997;
+      color: #ffffff;
+    }
+  }
+}
+
 #video-detail {
   .downloads, .downloads .btn {
     font-size: 0.8rem;

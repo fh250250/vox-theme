@@ -11,11 +11,16 @@ function onStart() {
     return [
       'title' => $category->title,
       'category_id' => $category->id,
-      'vods' => $category->vods()
+      'hot_vods' => $category->vods()
                          ->with('poster')
                          ->orderBy('view_count', 'desc')
                          ->limit(6)
-                         ->get()
+                         ->get(),
+      'latest_vods' => $category->vods()
+                            ->with('poster')
+                            ->orderBy('updated_at', 'desc')
+                            ->limit(6)
+                            ->get(),
     ];
   })->toArray();
 
@@ -24,13 +29,29 @@ function onStart() {
 ?>
 ==
 {% for group in vods_group %}
-  <div class="mb-2">
-    <div class="d-flex justify-content-between align-items-center mb-1">
-      <span class="text-info">热门{{ group.title }}</span>
+  <div class="mb-3">
+    <div class="d-flex mb-2 justify-content-between align-items-center">
+      <ul class="nav vod-tabs">
+        <li class="nav-item">
+          <a class="nav-link rounded-0 active px-2 py-1" data-toggle="pill" href="#latest-{{ group.category_id }}">最新{{ group.title }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-0 px-2 py-1" data-toggle="pill" href="#hot-{{ group.category_id }}">热门{{ group.title }}</a>
+        </li>
+      </ul>
       <a class="text-muted" href="{{ 'video-list'|page({ category_id: group.category_id }) }}"><small>更多</small></a>
     </div>
-    <div class="row video-list">
-      {% partial 'vods' vods=group.vods %}
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="latest-{{ group.category_id }}">
+        <div class="row video-list">
+          {% partial 'vods' vods=group.latest_vods %}
+        </div>
+      </div>
+      <div class="tab-pane fade" id="hot-{{ group.category_id }}">
+        <div class="row video-list">
+          {% partial 'vods' vods=group.hot_vods %}
+        </div>
+      </div>
     </div>
   </div>
 {% endfor %}
