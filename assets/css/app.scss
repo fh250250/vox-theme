@@ -57,3 +57,13 @@ a, a:active, a:hover {
     white-space: nowrap;
   }
 }
+
+.tutorials {
+  background: #ec3951;
+  a {
+    font-size: 12px;
+    &:last-child {
+      margin-left: 15px;
+    }
+  }
+}
