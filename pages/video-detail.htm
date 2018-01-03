@@ -22,7 +22,12 @@ function onStart() {
 ?>
 ==
 <h3>{{ vod.title }}</h3>
-<img class="d-block img-fluid mb-3" data-original="{{ vod.poster.getPath() }}" width="400" height="300">
+<img class="d-block img-fluid mb-2" data-original="{{ vod.poster.getPath() }}" width="400" height="300">
+
+<div class="tutorials d-flex align-items-center py-2 px-3 mb-2">
+  <a class="text-white mr-3" href="https://mp.weixin.qq.com/s?__biz=MzIxNzMyNzU4OQ==&mid=2247483729&idx=1&sn=cf9bae4665a9629e0b1e590a84212cb1&chksm=97fa33dba08dbacd8fe5ba46cb2d4a58b3a0c104cbbc24c0f268ae8f61779ac5cbfcea5f5c4d#rd">磁力链使用教程</a>
+  <a class="text-white" href="https://mp.weixin.qq.com/s?__biz=MzIxNzMyNzU4OQ==&mid=2247483710&idx=1&sn=46dba0da897f9b7833d7f6433c9a9ee9&chksm=97fa33b4a08dbaa24b67d10d90505a1d7ddeb527f1a82bd63c3e2c4c174c44255b858e6c1042#rd">种子使用教程</a>
+</div>
 
 <div class="list-group downloads">
   {% for info in baidu_info %}

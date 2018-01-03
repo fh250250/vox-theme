@@ -60,10 +60,8 @@ a, a:active, a:hover {
 
 .tutorials {
   background: #ec3951;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
   a {
     font-size: 12px;
-    &:last-child {
-      margin-left: 15px;
-    }
   }
 }
